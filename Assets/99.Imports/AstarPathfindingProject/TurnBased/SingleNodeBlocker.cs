@@ -20,12 +20,19 @@ namespace Pathfinding {
 		public GraphNode lastBlocked { get; private set; }
 		public BlockManager manager;
 
-		/// <summary>
-		/// Block node closest to the position of this object.
-		///
-		/// Will unblock the last node that was reserved (if any)
-		/// </summary>
-		public void BlockAtCurrentPosition () {
+        /// <summary>
+        /// Block node closest to the position of this object.
+        ///
+        /// Will unblock the last node that was reserved (if any)
+        /// </summary>
+        /// 
+
+        private void Update()
+        {
+			BlockAt(transform.position);
+        }
+
+        public void BlockAtCurrentPosition () {
 			BlockAt(transform.position);
 		}
 
