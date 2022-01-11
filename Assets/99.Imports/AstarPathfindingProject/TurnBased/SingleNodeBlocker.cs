@@ -25,13 +25,6 @@ namespace Pathfinding {
         ///
         /// Will unblock the last node that was reserved (if any)
         /// </summary>
-        /// 
-
-        private void Update()
-        {
-			BlockAt(transform.position);
-        }
-
         public void BlockAtCurrentPosition () {
 			BlockAt(transform.position);
 		}
