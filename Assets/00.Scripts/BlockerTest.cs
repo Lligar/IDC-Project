@@ -11,9 +11,4 @@ public class BlockerTest : MonoBehaviour
 
         blocker.BlockAtCurrentPosition();
     }
-
-    void Update()
-    {
-        
-    }
 }

@@ -97,9 +97,9 @@ public class AstarTestAI : MonoBehaviour
 
         // Move the agent using the CharacterController component
         // Note that SimpleMove takes a velocity in meters/second, so we should not multiply by Time.deltaTime
-        controller.SimpleMove(velocity);
+        // controller.SimpleMove(velocity);
 
         // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
-        // transform.position += velocity * Time.deltaTime;
+        transform.position += velocity * Time.deltaTime;
     }
 }
