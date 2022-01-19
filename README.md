@@ -10,7 +10,7 @@ IDC Stands for Idle Dungeon Crawler
 4. An actual complete game for Portfolio.
 
 ## Game Overview
-The main concept of the game is a Turn-Based Idle Game that simulates battle on a grid style field. Player character and enemy will take turns to fight. While the enemy will follow a fairly simple logic, the player character will follow a rather more complex logic created by the user. The user will create a set of logic with available skills. Every skill has movement range, attack range and cooldown timer.  
+The main concept of the game is a Turn-Based Idle Game that simulates battle like the 3DO's classic Might and Magic series or Sir-Tech's Wizardry. Quiet similar to the classic games the enemy and player character takes turn to attack each other. 
 > This part of logic can be freely edited by the player  
 >   
 > Ex0. If enemy is planning to attack this turn use "Block".  
