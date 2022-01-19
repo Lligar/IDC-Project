@@ -24,7 +24,6 @@ The main concept of the game is a Turn-Based Idle Game that simulates battle on 
 Every turn the player will search which skill to use following the logic above.  
 The higher the logic is, the higher the priority of the skill.  
 
-
 ## Gameplay
 
 
