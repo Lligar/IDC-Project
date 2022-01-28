@@ -14,18 +14,19 @@ The main concept of the game is a Turn-Based Idle Game that simulates battle lik
 > This part of logic can be freely edited by the player  
 >   
 > Ex0. If enemy is planning to attack this turn use "Block".  
-> Ex1. Check if enemy is within range of "X" and use "Y1" if returns false.  
-> Ex2. Check if enemy is within range of "X" and use "Y2" if returns true.  
-> Ex3. Check if "Y4" is off cooldown and use "Y3" if returns true.  
-> Ex4. Use "C2" if used "C1" previous turn. (Chained action)  
-> Ex5. Use "H1" if health below "X" percent returns true.  
-> Ex6. Use "Y2".  
+> Ex1. Check enemy number and use skill Y1 if returns true.  
+> Ex2. Use linked skill Y2.  
+> Ex3. Use skill Y2-1 if used Y2 last turn.  
+> Ex4. Use skill H1 if health below 50%.  
+> Ex5. Use skill Y3.  
 
 Every turn the player will search which skill to use following the logic above.  
 The higher the logic is, the higher the priority of the skill.  
 
-## Gameplay
-
+## Prototype
+The player will have the following resources.  
+- Skills Block, Y1, Y2, Y2-1, H1, Y3
+- 
 
 
 
