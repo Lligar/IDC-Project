@@ -23,11 +23,24 @@ The main concept of the game is a Turn-Based Idle Game that simulates battle lik
 Every turn the player will search which skill to use following the logic above.  
 The higher the logic is, the higher the priority of the skill.  
 
-## Prototype
-The player will have the following resources.  
-- Skills Block, Y1, Y2, Y2-1, H1, Y3
-- 
+## Prototype Building  
+### Total planned time - (11 ~ 12.5 Days)
+Main System (7 working days)  
+- Skills Block, Y1, Y2-1, Y2-2, H1, A1 (1~2 days)
+- AP per turn system, cooldown per skill system (1~2 days)
+- Random enemy number generation (1~2 days)
+- Player health (0.5 day)
+- Editable AI system (2 days)
+  
+Basic Graphics  (3~3.5 working days)
+- Character basic animations 
+- Skill GFX
+- UI Basics
 
+Basic Sound (1~1.5 working days)
+- BGM
+- GFX sounds
+- Character SFX
 
 
 #### Game Progression
