@@ -5,14 +5,4 @@ using UnityEngine;
 public class AttackManager : MonoBehaviour
 {
     public GameObject[] skills;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }
