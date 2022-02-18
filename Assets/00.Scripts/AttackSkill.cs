@@ -1,30 +1,76 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AttackSkill : MonoBehaviour
 {
-    public int damage;
-    public bool isDamagingSkill = true;
-    public int apCost;
+    public RectTransform skillBar;
+    public Transform skillTemplate;
 
-    CharacterHealth enemyHealth;
-    CharacterHealth playerHealth;
+    List<Skill> skillList;
+
 
     private void Start()
     {
-        enemyHealth = GameObject.Find("BringerOfDeathRig").GetComponent<CharacterHealth>();
-        playerHealth = GameObject.Find("WarriorRig").GetComponent<CharacterHealth>();
+        skillList = new List<Skill>();
+
+        AddSkill(new Skill
+        {
+            skillName = Skill.SkillName.AreaAttack,
+            damage = 10,
+            apCost = 2,
+            skillCD = 4,
+            currentCD = 4
+        });
+        AddSkill(new Skill
+        {
+            skillName = Skill.SkillName.ChainAttack1,
+            damage = 12,
+            apCost = 1,
+            skillCD = 3,
+            currentCD = 3
+        });
+        AddSkill(new Skill
+        {
+            skillName = Skill.SkillName.ChainAttack2,
+            damage = 24,
+            apCost = 2,
+            skillCD = 3,
+            currentCD = 3
+        });
+        AddSkill(new Skill
+        {
+            skillName = Skill.SkillName.SelfHeal,
+            damage = 10,
+            apCost = 1,
+            skillCD = 3,
+            currentCD = 3
+        });
+        AddSkill(new Skill
+        {
+            skillName = Skill.SkillName.AutoAttack,
+            damage = 10,
+            apCost = 1,
+            skillCD = 1,
+            currentCD = 1
+        });
+
+        RefreshSkillButton();
     }
-    public void ExcecuteSkill()
+
+    public void RefreshSkillButton()
     {
-        if(isDamagingSkill)
+        foreach(Skill skills in skillList)
         {
-            enemyHealth.CharacterDamaged(damage);
+            Transform skillButton = Instantiate(skillTemplate, skillBar).GetComponent<Transform>();
+            skillButton.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skills.skillName.ToString();
+            skillButton.GetComponent<AttackButton>().SetSkill(skills);
         }
-        else
-        {
-            playerHealth.CharacterDamaged(damage * -1);
-        }
+    }
+
+    public void AddSkill(Skill skill)
+    {
+        skillList.Add(skill);
     }
 }
