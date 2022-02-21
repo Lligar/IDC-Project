@@ -8,7 +8,7 @@ public class AttackSkill : MonoBehaviour
     public RectTransform skillBar;
     public Transform skillTemplate;
 
-    List<Skill> skillList;
+    public List<Skill> skillList;
 
 
     private void Start()
@@ -64,7 +64,7 @@ public class AttackSkill : MonoBehaviour
         foreach(Skill skills in skillList)
         {
             Transform skillButton = Instantiate(skillTemplate, skillBar).GetComponent<Transform>();
-            skillButton.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skills.skillName.ToString();
+            skillButton.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skills.skillName.ToString() + " / " + skills.currentCD;
             skillButton.GetComponent<AttackButton>().SetSkill(skills);
         }
     }

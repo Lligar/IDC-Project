@@ -12,6 +12,8 @@ public class AttackManager : MonoBehaviour
     PlayerHealth playerInfo;
     EnemyHealth enemyInfo;
 
+    
+
     public Image[] apCounter;
     //00D7FF
 
@@ -90,6 +92,14 @@ public class AttackManager : MonoBehaviour
             {
                 apCounter[i].color = new Color32(0, 215, 255, 255);
             }
+        }
+    }
+
+    void AttackCDApply()
+    {
+        foreach (Skill skill in attackSkill.skillList)
+        {
+            skill.currentCD = Mathf.Clamp(skill.currentCD - 1, 0, skill.skillCD);
         }
     }
 }
