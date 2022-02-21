@@ -26,22 +26,11 @@ public class AttackManager : MonoBehaviour
 
     public void QueueSkill(Skill skill)
     {
-        if (skill.currentCD == 0 && currentAP > skill.apCost)
+        if (skill.currentCD == 0 && currentAP >= skill.apCost)
         {
             attackSequence.Add(skill);
             currentAP -= skill.apCost;
-            Debug.Log(currentAP);
-                for (int i = 0; i < apCounter.Length; i ++)
-                {
-                    if(i >= currentAP)
-                    {
-                        apCounter[i].color = Color.white;
-                    }
-                    else
-                    {
-                        apCounter[i].color = new Color32(0, 215, 255, 255);
-                    }
-                }
+            RefreshAPVisual();
         }
     }
 
@@ -54,7 +43,13 @@ public class AttackManager : MonoBehaviour
     {
         if (attackSequence.Count > 0)
         {
+            currentAP += attackSequence[attackSequence.Count - 1].apCost;
             attackSequence.RemoveAt(attackSequence.Count - 1);
+            RefreshAPVisual();
+        }
+        else
+        {
+            print("NO QUEUED SKILL");
         }
     }
 
@@ -69,6 +64,8 @@ public class AttackManager : MonoBehaviour
         }
         attackSequence.Clear();
         print(attackSequence.Count);
+        currentAP = maxAP;
+        RefreshAPVisual();
     }
     void ExcecuteSkill(int i)
     {
@@ -79,6 +76,20 @@ public class AttackManager : MonoBehaviour
         else
         {
             playerInfo.PlayerDamaged(attackSequence[i]);
+        }
+    }
+    void RefreshAPVisual()
+    {
+        for (int i = 0; i < apCounter.Length; i++)
+        {
+            if (i >= currentAP)
+            {
+                apCounter[i].color = Color.white;
+            }
+            else
+            {
+                apCounter[i].color = new Color32(0, 215, 255, 255);
+            }
         }
     }
 }
