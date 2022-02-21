@@ -42,7 +42,7 @@ public class AttackSkill : MonoBehaviour
         AddSkill(new Skill
         {
             skillName = Skill.SkillName.SelfHeal,
-            damage = 10,
+            damage = -10,
             apCost = 1,
             skillCD = 3,
             currentCD = 3

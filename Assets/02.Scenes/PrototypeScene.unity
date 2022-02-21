@@ -372,11 +372,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 137370758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e92278deed1d625459a6c7168ed58bf0, type: 3}
+  m_Script: {fileID: 11500000, guid: c70ae301e077c554d9678bf022ccd827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
   healthBar: {fileID: 655344196}
 --- !u!1 &163841508
 GameObject:
@@ -1034,8 +1032,8 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
-  m_Value: 100
+  m_WholeNumbers: 1
+  m_Value: 32
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1121,9 +1119,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
-  m_WholeNumbers: 0
-  m_Value: 100
+  m_MaxValue: 0
+  m_WholeNumbers: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1602,7 +1600,7 @@ GameObject:
   - component: {fileID: 1426054649}
   m_Layer: 0
   m_Name: WarriorRig
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1631,11 +1629,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1426054647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e92278deed1d625459a6c7168ed58bf0, type: 3}
+  m_Script: {fileID: 11500000, guid: d473a9e3c31b43045bee66b22db91f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
   healthBar: {fileID: 724280062}
 --- !u!1 &1449694450
 GameObject:

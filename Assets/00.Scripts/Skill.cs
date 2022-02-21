@@ -18,4 +18,19 @@ public class Skill
         SelfHeal,
         AutoAttack
     }
+
+    public bool IsDamagingSkill()
+    {
+        switch(skillName)
+        {
+            default:
+            case SkillName.AreaAttack:
+            case SkillName.AutoAttack:
+            case SkillName.ChainAttack1:
+            case SkillName.ChainAttack2:
+                return true;
+            case SkillName.SelfHeal:
+                return false;
+        }
+    }
 }
