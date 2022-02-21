@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackManager : MonoBehaviour
 {
     public List<Skill> attackSequence;
+    public AttackSkill attackSkill;
     public int maxAP;
     public int currentAP;
     PlayerHealth playerInfo;
     EnemyHealth enemyInfo;
+
+    public Image[] apCounter;
+    //00D7FF
 
     private void Start()
     {
@@ -21,7 +26,23 @@ public class AttackManager : MonoBehaviour
 
     public void QueueSkill(Skill skill)
     {
-        attackSequence.Add(skill);
+        if (skill.currentCD == 0 && currentAP > skill.apCost)
+        {
+            attackSequence.Add(skill);
+            currentAP -= skill.apCost;
+            Debug.Log(currentAP);
+                for (int i = 0; i < apCounter.Length; i ++)
+                {
+                    if(i >= currentAP)
+                    {
+                        apCounter[i].color = Color.white;
+                    }
+                    else
+                    {
+                        apCounter[i].color = new Color32(0, 215, 255, 255);
+                    }
+                }
+        }
     }
 
     public void ExcecuteButton()

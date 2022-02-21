@@ -21,7 +21,7 @@ public class AttackSkill : MonoBehaviour
             damage = 10,
             apCost = 2,
             skillCD = 4,
-            currentCD = 4
+            currentCD = 0
         });
         AddSkill(new Skill
         {
@@ -29,7 +29,7 @@ public class AttackSkill : MonoBehaviour
             damage = 12,
             apCost = 1,
             skillCD = 3,
-            currentCD = 3
+            currentCD = 0
         });
         AddSkill(new Skill
         {
@@ -37,7 +37,7 @@ public class AttackSkill : MonoBehaviour
             damage = 24,
             apCost = 2,
             skillCD = 3,
-            currentCD = 3
+            currentCD = 0
         });
         AddSkill(new Skill
         {
@@ -45,7 +45,7 @@ public class AttackSkill : MonoBehaviour
             damage = -10,
             apCost = 1,
             skillCD = 3,
-            currentCD = 3
+            currentCD = 0
         });
         AddSkill(new Skill
         {
@@ -53,7 +53,7 @@ public class AttackSkill : MonoBehaviour
             damage = 10,
             apCost = 1,
             skillCD = 1,
-            currentCD = 1
+            currentCD = 0
         });
 
         RefreshSkillButton();
