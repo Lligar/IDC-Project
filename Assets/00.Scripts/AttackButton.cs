@@ -5,13 +5,11 @@ using UnityEngine;
 public class AttackButton : MonoBehaviour
 {
     Skill skill;
-    PlayerHealth playerInfo;
-    EnemyHealth enemyInfo;
+    AttackManager atkManager;
 
     private void Start()
     {
-        playerInfo = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-        enemyInfo = GameObject.FindWithTag("Enemy").GetComponent<EnemyHealth>();
+        atkManager = GameObject.FindGameObjectWithTag("AttackManager").GetComponent<AttackManager>();
     }
 
     public void SetSkill(Skill skill)
@@ -19,15 +17,12 @@ public class AttackButton : MonoBehaviour
         this.skill = skill;
     }
 
-    public void ExcecuteSkill()
+    public void ClickSkill()
     {
-        if(skill.IsDamagingSkill())
+        atkManager.QueueSkill(skill);
+        for (int i = 0; i < atkManager.attackSequence.Count; i ++)
         {
-            enemyInfo.EnemyDamaged(skill);
-        }
-        else
-        {
-            playerInfo.PlayerDamaged(skill);
+            print(atkManager.attackSequence[i].skillName);
         }
     }
 }
