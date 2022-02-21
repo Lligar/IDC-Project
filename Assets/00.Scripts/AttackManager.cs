@@ -23,10 +23,18 @@ public class AttackManager : MonoBehaviour
     {
         attackSequence.Add(skill);
     }
-    
+
     public void ExcecuteButton()
     {
         StartCoroutine("ExcecuteSequence");
+    }
+
+    public void CancelButton()
+    {
+        if (attackSequence.Count > 0)
+        {
+            attackSequence.RemoveAt(attackSequence.Count - 1);
+        }
     }
 
     public IEnumerator ExcecuteSequence()
