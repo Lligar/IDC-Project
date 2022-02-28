@@ -5,10 +5,9 @@ using TMPro;
 
 public class AttackButton : MonoBehaviour
 {
-    Skill skill;
+    public Skill skill;
     TextMeshProUGUI skillText;
     AttackManager atkManager;
-
 
     private void Start()
     {
@@ -24,7 +23,5 @@ public class AttackButton : MonoBehaviour
     public void ClickSkill()
     {
         atkManager.QueueSkill(skill);
-
-        skillText.text = skill.skillName + " / " + skill.currentCD.ToString();
     }
 }

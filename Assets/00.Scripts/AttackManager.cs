@@ -31,7 +31,7 @@ public class AttackManager : MonoBehaviour
 
     public void QueueSkill(Skill skill)
     {
-        if (skill.currentCD == 0 && currentAP >= skill.apCost)
+        if (skill.currentCD <= 0 && currentAP >= skill.apCost)
         {
             attackSequence.Add(skill);
             currentAP -= skill.apCost;
@@ -65,7 +65,6 @@ public class AttackManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
         }
         attackSequence.Clear();
-        print(attackSequence.Count);
         currentAP = maxAP;
         RefreshAttackInfo();
     }
@@ -90,15 +89,22 @@ public class AttackManager : MonoBehaviour
         {
             foreach (Skill skill in attackSkill.skillList)
             {
-                skill.currentCD = Mathf.Clamp(skill.currentCD - 1, 0, skill.skillCD);
+                skill.currentCD -= 1;
             }
+            attackSkill.RefreshSkillCD();
         }
         else
         {
             foreach (Skill skill in attackSkill.skillList)
             {
-                skill.currentCD = Mathf.Clamp(skill.currentCD + 1, 0, skill.skillCD);
+                    skill.currentCD += 1;
+
+                if(skill.currentCD == skill.skillCD)
+                {
+                    skill.currentCD = -10;
+                }
             }
+            attackSkill.RefreshSkillCD();
         }
     }
 
@@ -106,6 +112,7 @@ public class AttackManager : MonoBehaviour
     {
         StartCoroutine("ExcecuteSequence");
     }
+
     void ExcecuteSkill(int i)
     {
         if (attackSequence[i].IsDamagingSkill())

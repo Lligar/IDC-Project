@@ -9,6 +9,7 @@ public class AttackSkill : MonoBehaviour
     public Transform skillTemplate;
 
     public List<Skill> skillList;
+    public List<Transform> skillGOList;
 
 
     private void Start()
@@ -64,14 +65,20 @@ public class AttackSkill : MonoBehaviour
         foreach(Skill skills in skillList)
         {
             Transform skillButton = Instantiate(skillTemplate, skillBar).GetComponent<Transform>();
-            skillButton.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skills.skillName.ToString() + " / " + skills.currentCD;
+            //skillButton.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skills.skillName.ToString() + " / " + skills.currentCD;
             skillButton.GetComponent<AttackButton>().SetSkill(skills);
+            skillGOList.Add(skillButton);
         }
+        RefreshSkillCD();
     }
 
     public void RefreshSkillCD()
     {
-
+        foreach (Transform skillObject in skillGOList)
+        {
+            Skill skill = skillObject.GetComponent<AttackButton>().skill;
+            skillObject.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skill.skillName + " / " + Mathf.Clamp(skill.currentCD, 0, skill.skillCD);
+        }
     }
 
     public void AddSkill(Skill skill)
