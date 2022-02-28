@@ -9,13 +9,13 @@ public class AttackManager : MonoBehaviour
     public AttackSkill attackSkill;
     public int maxAP;
     public int currentAP;
+
     PlayerHealth playerInfo;
     EnemyHealth enemyInfo;
 
     
 
     public Image[] apCounter;
-    //00D7FF
 
     private void Start()
     {
@@ -26,28 +26,28 @@ public class AttackManager : MonoBehaviour
         attackSequence = new List<Skill>();
     }
 
+
+
+
     public void QueueSkill(Skill skill)
     {
         if (skill.currentCD == 0 && currentAP >= skill.apCost)
         {
             attackSequence.Add(skill);
             currentAP -= skill.apCost;
-            RefreshAPVisual();
+            skill.currentCD = skill.skillCD;
+            AttackCDApply(true);
+            RefreshAttackInfo();
         }
     }
-
-    public void ExcecuteButton()
-    {
-        StartCoroutine("ExcecuteSequence");
-    }
-
     public void CancelButton()
     {
         if (attackSequence.Count > 0)
         {
             currentAP += attackSequence[attackSequence.Count - 1].apCost;
             attackSequence.RemoveAt(attackSequence.Count - 1);
-            RefreshAPVisual();
+            AttackCDApply(false);
+            RefreshAttackInfo();
         }
         else
         {
@@ -67,20 +67,9 @@ public class AttackManager : MonoBehaviour
         attackSequence.Clear();
         print(attackSequence.Count);
         currentAP = maxAP;
-        RefreshAPVisual();
+        RefreshAttackInfo();
     }
-    void ExcecuteSkill(int i)
-    {
-        if (attackSequence[i].IsDamagingSkill())
-        {
-            enemyInfo.EnemyDamaged(attackSequence[i]);
-        }
-        else
-        {
-            playerInfo.PlayerDamaged(attackSequence[i]);
-        }
-    }
-    void RefreshAPVisual()
+    void RefreshAttackInfo()
     {
         for (int i = 0; i < apCounter.Length; i++)
         {
@@ -95,11 +84,37 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    void AttackCDApply()
+    void AttackCDApply(bool isAttackQueue)
     {
-        foreach (Skill skill in attackSkill.skillList)
+        if(isAttackQueue)
         {
-            skill.currentCD = Mathf.Clamp(skill.currentCD - 1, 0, skill.skillCD);
+            foreach (Skill skill in attackSkill.skillList)
+            {
+                skill.currentCD = Mathf.Clamp(skill.currentCD - 1, 0, skill.skillCD);
+            }
+        }
+        else
+        {
+            foreach (Skill skill in attackSkill.skillList)
+            {
+                skill.currentCD = Mathf.Clamp(skill.currentCD + 1, 0, skill.skillCD);
+            }
+        }
+    }
+
+    public void ExcecuteButton()
+    {
+        StartCoroutine("ExcecuteSequence");
+    }
+    void ExcecuteSkill(int i)
+    {
+        if (attackSequence[i].IsDamagingSkill())
+        {
+            enemyInfo.EnemyDamaged(attackSequence[i]);
+        }
+        else
+        {
+            playerInfo.PlayerDamaged(attackSequence[i]);
         }
     }
 }

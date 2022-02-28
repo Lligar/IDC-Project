@@ -69,6 +69,11 @@ public class AttackSkill : MonoBehaviour
         }
     }
 
+    public void RefreshSkillCD()
+    {
+
+    }
+
     public void AddSkill(Skill skill)
     {
         skillList.Add(skill);

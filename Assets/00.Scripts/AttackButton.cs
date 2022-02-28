@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AttackButton : MonoBehaviour
 {
     Skill skill;
+    TextMeshProUGUI skillText;
     AttackManager atkManager;
+
 
     private void Start()
     {
         atkManager = GameObject.FindGameObjectWithTag("AttackManager").GetComponent<AttackManager>();
+        skillText = transform.Find("SkillName").GetComponent<TextMeshProUGUI>();
     }
 
     public void SetSkill(Skill skill)
@@ -20,9 +24,7 @@ public class AttackButton : MonoBehaviour
     public void ClickSkill()
     {
         atkManager.QueueSkill(skill);
-        for (int i = 0; i < atkManager.attackSequence.Count; i ++)
-        {
-            print(atkManager.attackSequence[i].skillName);
-        }
+
+        skillText.text = skill.skillName + " / " + skill.currentCD.ToString();
     }
 }

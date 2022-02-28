@@ -1606,8 +1606,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd959928b73f36489a341ef1e5a5fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSkill: {fileID: 1752583958}
   maxAP: 0
   currentAP: 0
+  apCounter:
+  - {fileID: 599538282}
+  - {fileID: 1520820729}
+  - {fileID: 1366546316}
+  - {fileID: 1733607001}
+  - {fileID: 1601171592}
+  - {fileID: 726148561}
+  - {fileID: 178338973}
 --- !u!224 &1186247551
 RectTransform:
   m_ObjectHideFlags: 0
