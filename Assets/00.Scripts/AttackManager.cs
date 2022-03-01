@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AttackManager : MonoBehaviour
 {
     public List<Skill> attackSequence;
+    public List<Skill> availableSkills;
     public AttackSkill attackSkill;
     public int maxAP;
     public int currentAP;
@@ -24,6 +25,7 @@ public class AttackManager : MonoBehaviour
         playerInfo = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
         enemyInfo = GameObject.FindWithTag("Enemy").GetComponent<EnemyHealth>();
         attackSequence = new List<Skill>();
+        availableSkills = attackSkill.skillList;
     }
 
 

@@ -9,6 +9,7 @@ public class Skill
     public int apCost;
     public int skillCD;
     public int currentCD;
+    public int turnstartCD;
 
     public enum SkillName
     {

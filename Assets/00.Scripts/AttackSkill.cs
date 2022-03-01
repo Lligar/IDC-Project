@@ -12,7 +12,7 @@ public class AttackSkill : MonoBehaviour
     public List<Transform> skillGOList;
 
 
-    private void Start()
+    private void Awake()
     {
         skillList = new List<Skill>();
 
@@ -77,7 +77,8 @@ public class AttackSkill : MonoBehaviour
         foreach (Transform skillObject in skillGOList)
         {
             Skill skill = skillObject.GetComponent<AttackButton>().skill;
-            skillObject.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skill.skillName + " / " + Mathf.Clamp(skill.currentCD, 0, skill.skillCD);
+            skillObject.Find("SkillName").GetComponent<TextMeshProUGUI>().text = skill.skillName + " / " + Mathf.Clamp(skill.currentCD, 0, skill.skillCD)
+                                                                                                           /*skill.currentCD*/;
         }
     }
 

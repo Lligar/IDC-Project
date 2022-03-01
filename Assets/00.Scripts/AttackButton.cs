@@ -6,13 +6,11 @@ using TMPro;
 public class AttackButton : MonoBehaviour
 {
     public Skill skill;
-    TextMeshProUGUI skillText;
     AttackManager atkManager;
 
-    private void Start()
+    private void Awake()
     {
         atkManager = GameObject.FindGameObjectWithTag("AttackManager").GetComponent<AttackManager>();
-        skillText = transform.Find("SkillName").GetComponent<TextMeshProUGUI>();
     }
 
     public void SetSkill(Skill skill)
