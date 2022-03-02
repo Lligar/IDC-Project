@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     CharacterInfo characterInfo;
+    EnemyAnimation enemyAnimation;
     public Slider healthBar;
 
     private void Start()
     {
+        enemyAnimation = GetComponent<EnemyAnimation>();
         characterInfo = new CharacterInfo { characterType = CharacterInfo.CharacterType.Enemy, maxHealth = 75 };
         characterInfo.currentHealth = characterInfo.maxHealth;
         healthBar.maxValue = characterInfo.maxHealth;
@@ -21,5 +23,14 @@ public class EnemyHealth : MonoBehaviour
         characterInfo.currentHealth -= skill.damage;
         Mathf.Clamp(characterInfo.currentHealth, 0, characterInfo.maxHealth);
         healthBar.value = characterInfo.currentHealth;
+    }
+
+    public bool IsDead()
+    {
+        if (characterInfo.currentHealth <= 0)
+        {
+            return true;
+        }
+        else { return false; }
     }
 }

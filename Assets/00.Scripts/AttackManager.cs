@@ -47,6 +47,11 @@ public class AttackManager : MonoBehaviour
     {
         for (int i = 0; i < attackSequence.Count; i++)
         {
+            if (enemyInfo.IsDead())
+            {
+                break;
+            }
+
             ExcecuteSkill(i);
             print("Player uses " + attackSequence[i].skillName + " on Bod, dealing " + attackSequence[i].damage + " damage.");
             // Waiting for attack to finish. Will be changed to animation end later
@@ -61,8 +66,9 @@ public class AttackManager : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.1f);
-
         }
+
+
         attackSequence.Clear();
         currentAP = maxAP;
         
