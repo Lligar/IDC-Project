@@ -22,4 +22,9 @@ public class AttackButton : MonoBehaviour
     {
         atkManager.QueueSkill(skill);
     }
+
+    public void SaveTurnStartCD()
+    {
+        skill.turnStartCD = skill.currentCD;
+    }
 }

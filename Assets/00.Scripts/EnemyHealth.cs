@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
-        characterInfo = new CharacterInfo { characterType = CharacterInfo.CharacterType.Enemy, maxHealth = 250 };
+        characterInfo = new CharacterInfo { characterType = CharacterInfo.CharacterType.Enemy, maxHealth = 75 };
         characterInfo.currentHealth = characterInfo.maxHealth;
         healthBar.maxValue = characterInfo.maxHealth;
         healthBar.value = characterInfo.currentHealth;

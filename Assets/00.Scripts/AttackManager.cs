@@ -10,11 +10,10 @@ public class AttackManager : MonoBehaviour
     public AttackSkill attackSkill;
     public int maxAP;
     public int currentAP;
+    public PlayerAnimation playerAnimation;
 
     PlayerHealth playerInfo;
     EnemyHealth enemyInfo;
-
-    
 
     public Image[] apCounter;
 
@@ -42,20 +41,7 @@ public class AttackManager : MonoBehaviour
             RefreshAttackInfo();
         }
     }
-    public void CancelButton()
-    {
-        if (attackSequence.Count > 0)
-        {
-            currentAP += attackSequence[attackSequence.Count - 1].apCost;
-            attackSequence.RemoveAt(attackSequence.Count - 1);
-            AttackCDApply(false);
-            RefreshAttackInfo();
-        }
-        else
-        {
-            print("NO QUEUED SKILL");
-        }
-    }
+
 
     public IEnumerator ExcecuteSequence()
     {
@@ -64,12 +50,30 @@ public class AttackManager : MonoBehaviour
             ExcecuteSkill(i);
             print("Player uses " + attackSequence[i].skillName + " on Bod, dealing " + attackSequence[i].damage + " damage.");
             // Waiting for attack to finish. Will be changed to animation end later
-            yield return new WaitForSeconds(1.5f);
+
+            playerAnimation.TriggerAnim(attackSequence[i]);
+
+            yield return new WaitForSeconds(0.25f);
+
+            while (!playerAnimation.CheckIfIdle())
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
         }
         attackSequence.Clear();
         currentAP = maxAP;
+        
+        foreach(Transform attackButton in attackSkill.skillGOList)
+        {
+            attackButton.GetComponent<AttackButton>().SaveTurnStartCD();
+        }
+
         RefreshAttackInfo();
     }
+
     void RefreshAttackInfo()
     {
         for (int i = 0; i < apCounter.Length; i++)
@@ -113,6 +117,31 @@ public class AttackManager : MonoBehaviour
     public void ExcecuteButton()
     {
         StartCoroutine("ExcecuteSequence");
+    }
+
+    public void CancelButton()
+    {
+        if (attackSequence.Count > 0)
+        {
+            /*currentAP += attackSequence[attackSequence.Count - 1].apCost;
+            attackSequence.RemoveAt(attackSequence.Count - 1);
+            AttackCDApply(false);
+            RefreshAttackInfo();*/
+
+            currentAP = 7;
+            attackSequence.Clear();
+            foreach (Transform attackButton in attackSkill.skillGOList)
+            {
+                Skill skill = attackButton.GetComponent<AttackButton>().skill;
+                skill.currentCD = skill.turnStartCD;
+            }
+            RefreshAttackInfo();
+            attackSkill.RefreshSkillCD();
+        }
+        else
+        {
+            print("NO QUEUED SKILL");
+        }
     }
 
     void ExcecuteSkill(int i)

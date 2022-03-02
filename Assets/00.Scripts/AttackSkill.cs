@@ -11,7 +11,6 @@ public class AttackSkill : MonoBehaviour
     public List<Skill> skillList;
     public List<Transform> skillGOList;
 
-
     private void Awake()
     {
         skillList = new List<Skill>();
