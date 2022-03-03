@@ -37,7 +37,7 @@ public class AttackManager : MonoBehaviour
             attackSequence.Add(skill);
             currentAP -= skill.apCost;
             skill.currentCD = skill.skillCD;
-            AttackCDApply(true);
+            AttackCDApply();
             RefreshAttackInfo();
         }
     }
@@ -47,16 +47,19 @@ public class AttackManager : MonoBehaviour
     {
         for (int i = 0; i < attackSequence.Count; i++)
         {
-            if (enemyInfo.IsDead())
-            {
-                break;
-            }
+            
 
             ExcecuteSkill(i);
             print("Player uses " + attackSequence[i].skillName + " on Bod, dealing " + attackSequence[i].damage + " damage.");
             // Waiting for attack to finish. Will be changed to animation end later
 
             playerAnimation.TriggerAnim(attackSequence[i]);
+
+            if (enemyInfo.IsDead())
+            {
+                enemyInfo.EnemyHealthDeath();
+                break;
+            }
 
             yield return new WaitForSeconds(0.25f);
 
@@ -71,8 +74,8 @@ public class AttackManager : MonoBehaviour
 
         attackSequence.Clear();
         currentAP = maxAP;
-        
-        foreach(Transform attackButton in attackSkill.skillGOList)
+
+        foreach (Transform attackButton in attackSkill.skillGOList)
         {
             attackButton.GetComponent<AttackButton>().SaveTurnStartCD();
         }
@@ -95,29 +98,13 @@ public class AttackManager : MonoBehaviour
         }
     }
 
-    void AttackCDApply(bool isAttackQueue)
+    void AttackCDApply()
     {
-        if(isAttackQueue)
+        foreach (Skill skill in attackSkill.skillList)
         {
-            foreach (Skill skill in attackSkill.skillList)
-            {
-                skill.currentCD -= 1;
-            }
-            attackSkill.RefreshSkillCD();
+            skill.currentCD -= 1;
         }
-        else
-        {
-            foreach (Skill skill in attackSkill.skillList)
-            {
-                    skill.currentCD += 1;
-
-                if(skill.currentCD == skill.skillCD)
-                {
-                    skill.currentCD = -10;
-                }
-            }
-            attackSkill.RefreshSkillCD();
-        }
+        attackSkill.RefreshSkillCD();
     }
 
     public void ExcecuteButton()

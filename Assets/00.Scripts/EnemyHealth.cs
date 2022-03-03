@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         enemyAnimation = GetComponent<EnemyAnimation>();
-        characterInfo = new CharacterInfo { characterType = CharacterInfo.CharacterType.Enemy, maxHealth = 75 };
+        characterInfo = new CharacterInfo { characterType = CharacterInfo.CharacterType.Enemy, maxHealth = 10 };
         characterInfo.currentHealth = characterInfo.maxHealth;
         healthBar.maxValue = characterInfo.maxHealth;
         healthBar.value = characterInfo.currentHealth;
@@ -23,6 +23,11 @@ public class EnemyHealth : MonoBehaviour
         characterInfo.currentHealth -= skill.damage;
         Mathf.Clamp(characterInfo.currentHealth, 0, characterInfo.maxHealth);
         healthBar.value = characterInfo.currentHealth;
+    }
+
+    public void EnemyHealthDeath()
+    {
+        enemyAnimation.DeadAnimation();
     }
 
     public bool IsDead()
