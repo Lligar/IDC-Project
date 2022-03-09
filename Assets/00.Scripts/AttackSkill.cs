@@ -15,14 +15,14 @@ public class AttackSkill : MonoBehaviour
     {
         skillList = new List<Skill>();
 
-        AddSkill(new Skill
+        /*AddSkill(new Skill
         {
             skillName = Skill.SkillName.AreaAttack,
             damage = 10,
             apCost = 2,
             skillCD = 4,
             currentCD = 0
-        });
+        });*/
         AddSkill(new Skill
         {
             skillName = Skill.SkillName.ChainAttack1,
@@ -39,14 +39,14 @@ public class AttackSkill : MonoBehaviour
             skillCD = 3,
             currentCD = 0
         });
-        AddSkill(new Skill
+        /*AddSkill(new Skill
         {
             skillName = Skill.SkillName.SelfHeal,
             damage = -10,
             apCost = 1,
             skillCD = 3,
             currentCD = 0
-        });
+        });*/
         AddSkill(new Skill
         {
             skillName = Skill.SkillName.AutoAttack,

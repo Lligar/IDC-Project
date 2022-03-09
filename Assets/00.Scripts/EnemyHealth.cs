@@ -8,11 +8,12 @@ public class EnemyHealth : MonoBehaviour
     CharacterInfo characterInfo;
     EnemyAnimation enemyAnimation;
     public Slider healthBar;
+    public int characterHealth;
 
     private void Start()
     {
         enemyAnimation = GetComponent<EnemyAnimation>();
-        characterInfo = new CharacterInfo { characterType = CharacterInfo.CharacterType.Enemy, maxHealth = 10 };
+        characterInfo = new CharacterInfo { characterType = CharacterInfo.CharacterType.Enemy, maxHealth = characterHealth };
         characterInfo.currentHealth = characterInfo.maxHealth;
         healthBar.maxValue = characterInfo.maxHealth;
         healthBar.value = characterInfo.currentHealth;
