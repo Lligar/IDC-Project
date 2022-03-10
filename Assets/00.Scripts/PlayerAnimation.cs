@@ -41,6 +41,11 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetTrigger("Ani" + skill.skillName);
     }
 
+    public void TriggerRun()
+    {
+        anim.SetTrigger("AniRun");
+    }
+
     public bool CheckIfIdle()
     {
         if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))

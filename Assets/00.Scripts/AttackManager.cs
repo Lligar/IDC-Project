@@ -10,7 +10,9 @@ public class AttackManager : MonoBehaviour
     public AttackSkill attackSkill;
     public int maxAP;
     public int currentAP;
+
     public PlayerAnimation playerAnimation;
+    public LoopBackground loopBackground;
 
     PlayerHealth playerInfo;
     EnemyHealth enemyInfo;
@@ -58,6 +60,7 @@ public class AttackManager : MonoBehaviour
             if (enemyInfo.IsDead())
             {
                 enemyInfo.EnemyHealthDeath();
+                yield return new WaitForSeconds(1f);
                 break;
             }
 
@@ -81,6 +84,14 @@ public class AttackManager : MonoBehaviour
         }
 
         RefreshAttackInfo();
+
+        if (CheckIfEnemyWiped())
+        {
+            // 캐릭터 이동 및 캐릭터 생성
+            playerAnimation.TriggerRun();
+            loopBackground.characterIsMoving = true;
+        }
+        
     }
 
     void RefreshAttackInfo()
@@ -146,6 +157,19 @@ public class AttackManager : MonoBehaviour
         else
         {
             playerInfo.PlayerDamaged(attackSequence[i]);
+        }
+    }
+
+    bool CheckIfEnemyWiped()
+    {
+        if(!GameObject.FindGameObjectWithTag("Enemy"))
+        {
+            print("true");
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
