@@ -17,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
         characterInfo.currentHealth = characterInfo.maxHealth;
         healthBar.maxValue = characterInfo.maxHealth;
         healthBar.value = characterInfo.currentHealth;
+
+        GameObject.FindGameObjectWithTag("AttackManager").GetComponent<AttackManager>().SetEnemyHealth(this);
     }
 
     public void EnemyDamaged(Skill skill)

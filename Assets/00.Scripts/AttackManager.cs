@@ -12,7 +12,6 @@ public class AttackManager : MonoBehaviour
     public int currentAP;
 
     public PlayerAnimation playerAnimation;
-    public LoopBackground loopBackground;
 
     PlayerHealth playerInfo;
     EnemyHealth enemyInfo;
@@ -24,13 +23,15 @@ public class AttackManager : MonoBehaviour
         maxAP = 7;
         currentAP = maxAP;
         playerInfo = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-        enemyInfo = GameObject.FindWithTag("Enemy").GetComponent<EnemyHealth>();
+        //enemyInfo = GameObject.FindWithTag("Enemy").GetComponent<EnemyHealth>();
         attackSequence = new List<Skill>();
         availableSkills = attackSkill.skillList;
     }
 
-
-
+    public void SetEnemyHealth(EnemyHealth enemyHealth)
+    {
+        this.enemyInfo = enemyHealth;
+    }
 
     public void QueueSkill(Skill skill)
     {
@@ -88,8 +89,7 @@ public class AttackManager : MonoBehaviour
         if (CheckIfEnemyWiped())
         {
             // 캐릭터 이동 및 캐릭터 생성
-            playerAnimation.TriggerRun();
-            loopBackground.characterIsMoving = true;
+            playerAnimation.StartCoroutine("TriggerRun");
         }
         
     }

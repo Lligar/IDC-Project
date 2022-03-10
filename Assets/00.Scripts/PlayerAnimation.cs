@@ -6,6 +6,8 @@ public class PlayerAnimation : MonoBehaviour
 {
     float timer;
     Animator anim;
+    public LoopBackground loopBackground;
+    public SpawnManager spawnManager;
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +43,17 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetTrigger("Ani" + skill.skillName);
     }
 
-    public void TriggerRun()
+    public IEnumerator TriggerRun()
     {
         anim.SetTrigger("AniRun");
+        loopBackground.acceleration = 0f;
+        loopBackground.characterIsMoving = true;
+        yield return new WaitForSeconds(3f);
+        loopBackground.characterIsMoving = false;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetTrigger("RunStopped");
+        yield return new WaitForSeconds(2f);
+        spawnManager.SpawnEnemy();
     }
 
     public bool CheckIfIdle()
