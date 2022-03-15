@@ -24,7 +24,6 @@ Every turn the player will search which skill to use following the logic above.
 The higher the logic is, the higher the priority of the skill.  
 
 ## Prototype Building  
-### Total planned time - (11 ~ 12.5 Days)
 Main System (7 working days)  
 - Skills Block, Y1, Y2-1, Y2-2, H1, A1 (1~2 days)
 - AP per turn system, cooldown per skill system (1~2 days)
